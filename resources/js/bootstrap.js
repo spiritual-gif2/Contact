@@ -1,9 +1,9 @@
-import * as Popper from "@popperjs/core";
+import loadash from 'lodash'
+window._ = loadash
+
+
+import * as Popper from '@popperjs/core'
 window.Popper = Popper
-
-import loadach from 'lodash'
-window._ = loadach
-
 
 import 'bootstrap';
 
