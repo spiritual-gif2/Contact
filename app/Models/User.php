@@ -41,6 +41,10 @@ class User extends Authenticatable
         return Contacts::onlyTrashed()->where('user_id', '=', $this->getId())->get();
     }
 
+    public function favorite(){
+        return Contacts::all()->where('user_id', '=', $this->getId())->where('favorite', '=', 'yes');
+    }
+
     public function getId()
     {
         return $this->attributes['id'];

@@ -10,9 +10,9 @@
     @vite(['resources/js/app.js'])
 
     <style>
-        .view{
-            height:fit-content;
-        }
+    .view {
+        height: fit-content;
+    }
     </style>
 
 </head>
@@ -41,7 +41,8 @@
                 style="width: 280px;">
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="/contacts" class="nav-link fs-4" aria-current="page">
+                        <a href="contacts" class="nav-link fs-4 {{ Request::path() == 'contacts' ? 'active' : '' }}"
+                            aria-current="{{ Request::path() == 'contacts' ? 'page' : '' }}">
                             <span class="d-flex flex-row justify-content-between align-item-center">
                                 Contacts
                                 <span class="badge text-bg-danger text-light fs-5">@yield('numContact',0) </span>
@@ -49,35 +50,34 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link fs-4" aria-current="page">
+                        <a href="favorite" class="nav-link fs-4 {{ Request::path() == 'favorite' ? 'active' : '' }}"
+                            aria-current="{{ Request::path() == 'favorite' ? 'page' : '' }}">
                             <span class="d-flex flex-row justify-content-between align-item-center">
-                                Home
-                                <span class="badge text-bg-danger text-light fs-5">4</span>
+                                Favorite
+                                <span class="badge text-bg-danger text-light fs-5">@yield('numFavorite',0)</span>
                             </span>
                         </a>
-                    </li><li class="nav-item">
-                        <a href="#" class="nav-link fs-4" aria-current="page">
-                            <span class="d-flex flex-row justify-content-between align-item-center">
-                                Home
-                                <span class="badge text-bg-danger text-light fs-5">4</span>
-                            </span>
-                        </a>
-                    </li><li class="nav-item">
-                        <a href="trash" class="nav-link fs-4" aria-current="page">
+                    </li>
+                    <li class="nav-item mb-4">
+                        <a href="trash" class="nav-link fs-4 {{ Request::path() == 'trash' ? 'active' : '' }}"
+                            aria-current="{{ Request::path() == 'trash' ? 'page' : '' }}">
                             <span class="d-flex flex-row justify-content-between align-item-center">
                                 Trash
                                 <span class="badge text-bg-danger text-light fs-5">@yield('numTrash',0)</span>
                             </span>
                         </a>
                     </li>
+                    <li class="nav-item d-grid">
+                        <a href="new" class="btn btn-success text-center fs-4">New Contact</a>
+                    </li>
                 </ul>
             </div>
 
             <!-- Content -->
-            <div class="container-fluid align-item-center col-md-9">
-            @yield('content')
+            <div class="container-fluid align-item-center justify-content-center col-md-9">
+                @yield('content')
             </div>
-            
+
         </div>
 
         <!-- Footer -->

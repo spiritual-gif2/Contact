@@ -2,12 +2,14 @@
 
 @section('content')
 
+@section('title', $viewData['title'])
 @section('numContact', $viewData['contacts']->count())
 @section('numTrash', $viewData['trashed']->count())
+@section('numFavorite', $viewData['favorite']->count())
 
 <div class="container-fluid">
     <div class="d-flex flex-column no-wrap">
-        @foreach($viewData['contacts'] as $contact)
+        @foreach($viewData['pageData'] as $contact)
         <!-- The Modal -->
         <div class="modal modal-sheet bg-body-secondary p-4 mt-5 py-md-5 fade" id="myModal{{ $contact->getId() }}">
             <div class="modal-dialog modal-lg">
@@ -48,7 +50,11 @@
         <!-- Contacts list -->
         <div class="card col-10 col-md-9 mb-3">
             <div class="d-flex flex-row align-item-center justify-content-between card-body fs-3">
-                <span class="col-8">{{ $contact->getName() }}</span>
+                @if( $contact->getFavorite() == 'yes')
+                    <span class="col-8 text-success">{{ $contact->getName() }}</span>
+                @else
+                    <span class="col-8">{{ $contact->getName() }}</span>
+                @endif
                 <div>
                     <div class="d-flex  align-item-center">
                         <button type="button" class="text-decoration-none btn btn-success view"

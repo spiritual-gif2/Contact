@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('num');
-            $table->string('mail');
+            $table->string('mail')->nullable();
             $table->enum('favorite', ['yes', 'no'])->default('no');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
