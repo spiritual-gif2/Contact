@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +23,7 @@ class ContactsFactory extends Factory
             'num' => $this->faker->bothify('###-#########'),
             'mail' => $this->faker->safeEmail(),
             'favorite' => $this->faker->randomElement(['yes', 'no']),
-            'user_id' => rand(2,5)
+            'user_id' => rand(1, User::all()->count())
         ];
     }
 }

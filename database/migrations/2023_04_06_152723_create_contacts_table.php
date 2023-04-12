@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('favorite', ['yes', 'no'])->default('no');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

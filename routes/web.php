@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactsController;
+use App\Models\Contacts;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/Contacts', [ContactsController::class, 'index'])->name('contacts');
+Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts');
+Route::delete('/contact/delete/{id}', [ContactsController::class, 'delete'])->name('delete.contact');
+
+Route::get('/trash', [ContactsController::class, 'trash'])->name('trash');

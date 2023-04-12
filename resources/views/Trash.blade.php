@@ -4,10 +4,9 @@
 
 @section('numContact', $viewData['contacts']->count())
 @section('numTrash', $viewData['trashed']->count())
-
 <div class="container-fluid">
     <div class="d-flex flex-column no-wrap">
-        @foreach($viewData['contacts'] as $contact)
+        @foreach($viewData['trashed'] as $contact)
         <!-- The Modal -->
         <div class="modal modal-sheet bg-body-secondary p-4 mt-5 py-md-5 fade" id="myModal{{ $contact->getId() }}">
             <div class="modal-dialog modal-lg">
@@ -53,13 +52,6 @@
                     <div class="d-flex  align-item-center">
                         <button type="button" class="text-decoration-none btn btn-success view"
                             data-bs-toggle="modal" data-bs-target="#myModal{{ $contact->getId() }}">view</button>
-
-                        <form action="{{route('delete.contact', [$contact->getId()] )}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="text-decoration-none btn btn-danger">delete</button>
-                        </form>
 
                     </div>
 

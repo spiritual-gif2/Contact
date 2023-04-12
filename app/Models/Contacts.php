@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contacts extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -17,6 +18,12 @@ class Contacts extends Model
         'user_id'
     ];
 // getters
+
+    public function getId()
+    {
+        return $this->attributes['id'];
+    } 
+
     public function getName()
     {
         return $this->attributes['name'];

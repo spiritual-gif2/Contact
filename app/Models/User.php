@@ -37,6 +37,15 @@ class User extends Authenticatable
         return $this->hasMany(Contacts::class, 'user_id', 'id');
     }
 
+    public function trashed(){
+        return Contacts::onlyTrashed()->where('user_id', '=', $this->getId())->get();
+    }
+
+    public function getId()
+    {
+        return $this->attributes['id'];
+    }
+
     /**
      * The attributes that should be cast.
      *

@@ -5,9 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>@yield('title','ContactManagement') </title>
 
     @vite(['resources/js/app.js'])
+
+    <style>
+        .view{
+            height:fit-content;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -34,10 +41,10 @@
                 style="width: 280px;">
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="/register" class="nav-link fs-4" aria-current="page">
+                        <a href="/contacts" class="nav-link fs-4" aria-current="page">
                             <span class="d-flex flex-row justify-content-between align-item-center">
-                                Home
-                                <span class="badge text-bg-danger text-light fs-5">4</span>
+                                Contacts
+                                <span class="badge text-bg-danger text-light fs-5">@yield('numContact',0) </span>
                             </span>
                         </a>
                     </li>
@@ -56,10 +63,10 @@
                             </span>
                         </a>
                     </li><li class="nav-item">
-                        <a href="#" class="nav-link fs-4" aria-current="page">
+                        <a href="trash" class="nav-link fs-4" aria-current="page">
                             <span class="d-flex flex-row justify-content-between align-item-center">
-                                Home
-                                <span class="badge text-bg-danger text-light fs-5">4</span>
+                                Trash
+                                <span class="badge text-bg-danger text-light fs-5">@yield('numTrash',0)</span>
                             </span>
                         </a>
                     </li>
@@ -67,7 +74,7 @@
             </div>
 
             <!-- Content -->
-            <div class="container-fluid align-item-center col-md-8">
+            <div class="container-fluid align-item-center col-md-9">
             @yield('content')
             </div>
             
