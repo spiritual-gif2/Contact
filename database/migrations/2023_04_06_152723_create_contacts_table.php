@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('name')->nullable()->default('no name');
             $table->string('num');
             $table->string('mail')->nullable();
             $table->enum('favorite', ['yes', 'no'])->default('no');

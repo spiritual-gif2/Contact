@@ -46,27 +46,27 @@ class Contacts extends Model
 
 
 // setters
-    protected function setName($name)
+    public function setName($name)
     {
         return $this->attributes['name'] = $name;
     }
 
-    protected function setNum($num)
+    public function setNum($num)
     {
         return $this->attributes['num'] = $num;
     }
 
-    protected function setMail($mail)
+    public function setMail($mail)
     {
         return $this->attributes['mail'] = $mail;
     }
 
-    protected function setFavorite($favorite)
+    public function setFavorite($favorite)
     {
         return $this->attributes['favorite'] = $favorite;
     }
 
-    protected function register()
+    public function register()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }

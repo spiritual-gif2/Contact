@@ -78,6 +78,42 @@ class ContactsController extends Controller
         return redirect('/contacts');
     }
 
+    //edit a given contact
+    public function edit($id){
+        $this->viewData['title'] = "Edit Contact";
+        $this->viewData['edited'] = Contacts::findOrFail($id);
+        return view('Edit')->with('viewData', $this->viewData);
+    }
+
+    public function update(Request $request, $id){
+
+        $validator = $request->validate([
+            'name' => 'string|nullable',
+            'num' => 'required',
+            'mail' => 'email|nullable'
+        ]);
+
+        $edited = Contacts::findOrFail($id);
+        
+        if ($request->has('favorite')) {
+            $edited->setName($request->input('name'));
+            $edited->setNum($request->input('num'));
+            $edited->setMail($request->input('mail'));
+            $edited->setFavorite('yes');
+        } else {
+            $edited->setName($request->input('name'));
+            $edited->setNum($request->input('num'));
+            $edited->setMail($request->input('mail'));
+            $edited->setFavorite('no');
+        }
+
+        $edited->save();
+
+        return redirect('/contacts');
+
+    }
+
+
     //delete a contact
     public function delete($id){
         Contacts::find($id)->delete();

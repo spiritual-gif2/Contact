@@ -24,7 +24,7 @@
         <header
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom mx-2">
             <div class="col-md-3 mb-2 mb-md-0">
-                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                <a href="/contacts" class="d-inline-flex link-body-emphasis text-decoration-none">
                     <h1 class="">ContactsManagement</h1>
                 </a>
             </div>
@@ -41,7 +41,7 @@
                 style="width: 280px;">
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="contacts" class="nav-link fs-4 {{ Request::path() == 'contacts' ? 'active' : '' }}"
+                        <a href="/contacts" class="nav-link fs-4 {{ Request::path() == 'contacts' ? 'active' : '' }}"
                             aria-current="{{ Request::path() == 'contacts' ? 'page' : '' }}">
                             <span class="d-flex flex-row justify-content-between align-item-center">
                                 Contacts
@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="favorite" class="nav-link fs-4 {{ Request::path() == 'favorite' ? 'active' : '' }}"
+                        <a href="/favorite" class="nav-link fs-4 {{ Request::path() == 'favorite' ? 'active' : '' }}"
                             aria-current="{{ Request::path() == 'favorite' ? 'page' : '' }}">
                             <span class="d-flex flex-row justify-content-between align-item-center">
                                 Favorite
@@ -59,7 +59,7 @@
                         </a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="trash" class="nav-link fs-4 {{ Request::path() == 'trash' ? 'active' : '' }}"
+                        <a href="/trash" class="nav-link fs-4 {{ Request::path() == 'trash' ? 'active' : '' }}"
                             aria-current="{{ Request::path() == 'trash' ? 'page' : '' }}">
                             <span class="d-flex flex-row justify-content-between align-item-center">
                                 Trash
@@ -68,7 +68,7 @@
                         </a>
                     </li>
                     <li class="nav-item d-grid">
-                        <a href="new" class="btn btn-success text-center fs-4">New Contact</a>
+                        <a href="/new" class="btn btn-success text-center fs-4">New Contact</a>
                     </li>
                 </ul>
             </div>

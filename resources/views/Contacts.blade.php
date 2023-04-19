@@ -40,6 +40,7 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
+                        <a href="{{route('edit', [$contact->getId()] )}}" class="text-decoration-none btn btn-warning">Edit</a>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
 
@@ -51,20 +52,19 @@
         <div class="card col-10 col-md-9 mb-3">
             <div class="d-flex flex-row align-item-center justify-content-between card-body fs-3">
                 @if( $contact->getFavorite() == 'yes')
-                    <span class="col-8 text-success">{{ $contact->getName() }}</span>
+                <span class="col-8 text-success">{{ $contact->getName() }}</span>
                 @else
-                    <span class="col-8">{{ $contact->getName() }}</span>
+                <span class="col-8">{{ $contact->getName() }}</span>
                 @endif
                 <div>
                     <div class="d-flex  align-item-center">
-                        <button type="button" class="text-decoration-none btn btn-success view"
-                            data-bs-toggle="modal" data-bs-target="#myModal{{ $contact->getId() }}">view</button>
+                        <button type="button" class="text-decoration-none btn btn-success view" data-bs-toggle="modal"
+                            data-bs-target="#myModal{{ $contact->getId() }}">view</button>
 
                         <form action="{{route('delete.contact', [$contact->getId()] )}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit"
-                                class="text-decoration-none btn btn-danger">delete</button>
+                            <button type="submit" class="text-decoration-none btn btn-danger">delete</button>
                         </form>
 
                     </div>
