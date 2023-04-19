@@ -111,21 +111,10 @@
 
         <!-- Footer -->
         <footer
-            class="fixed-bottom d-flex flex-wrap justify-content-between align-items-center py-3 my-4 pe-4 border-top">
+            class="d-flex justify-content-center align-items-center py-3 my-4 px-4 border-top border-3">
             <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24">
-                        <use xlink:href="#bootstrap" />
-                    </svg>
-                </a>
-                <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 Company, Inc</span>
+                <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 MOUSSA Ahmed Djemil</span>
             </div>
-
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-body-secondary link-decoration-none" href="#">test</a></li>
-                <li class="ms-3"><a class="text-body-secondary link-decoration-none" href="#">test</a></li>
-                <li class="ms-3"><a class="text-body-secondary link-decoration-none" href="#">test</a></li>
-            </ul>
         </footer>
     </div>
 </body>
