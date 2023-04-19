@@ -6,24 +6,36 @@ use App\Models\Contacts;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactsController extends Controller
 {
     //
     public $user;
     public $viewData = [];
+    public $userID;
 
     public function __construct()
     {
-        $this->user = User::findOrFail(3);
+        $this->middleware('auth');
+    }
+
+    protected function load(){
+
+        $this->userID = Auth::id();
+        $this->user = User::find($this->userID);
         $this->viewData['user'] = $this->user;
-        $this->viewData['contacts'] = $this->user->contacts;
-        $this->viewData['trashed'] = $this->user->trashed();
-        $this->viewData['favorite'] = $this->user->favorite();
+        if ($this->user) {
+            $this->viewData['contacts'] = $this->user->contacts;
+            $this->viewData['trashed'] = $this->user->trashed();
+            $this->viewData['favorite'] = $this->user->favorite();
+        }
+
     }
 
     //contact list view controller
     public function index(){
+        $this->load();
         $this->viewData['title'] = "My Contacts";
         $this->viewData['pageData'] = $this->viewData['contacts'];
         return view('Contacts')->with('viewData', $this->viewData);
@@ -31,12 +43,14 @@ class ContactsController extends Controller
 
     //delete contact view controller
     public function trash(){
+        $this->load();
         $this->viewData['title'] = "My Trash";
         return view('Trash')->with('viewData', $this->viewData);
     }
 
     //favorite contact view controller
     public function favorite(){
+        $this->load();
         $this->viewData['title'] = "My Favorite";
         $this->viewData['pageData'] = $this->viewData['favorite'];
         return view('Favorite')->with('viewData', $this->viewData);
@@ -44,12 +58,14 @@ class ContactsController extends Controller
 
     //create a new contact
     public function new(){
+        $this->load();
         $this->viewData['title'] = "New Contact";
         return view('New')->with('viewData', $this->viewData);
     }
 
 
     public function store(Request $request){
+        $this->load();
         
         $validator = $request->validate([
             'name' => 'string|nullable',
@@ -80,12 +96,14 @@ class ContactsController extends Controller
 
     //edit a given contact
     public function edit($id){
+        $this->load();
         $this->viewData['title'] = "Edit Contact";
         $this->viewData['edited'] = Contacts::findOrFail($id);
         return view('Edit')->with('viewData', $this->viewData);
     }
 
     public function update(Request $request, $id){
+        $this->load();
 
         $validator = $request->validate([
             'name' => 'string|nullable',
@@ -116,6 +134,7 @@ class ContactsController extends Controller
 
     //delete a contact
     public function delete($id){
+        $this->load();
         Contacts::find($id)->delete();
         return back();
     }

@@ -16,18 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /* contacts management */
 
 // list all the contacts
 Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts');
+Route::get('/', [ContactsController::class, 'index']);
 // get the form to create a new contact
 Route::get('/new', [ContactsController::class, 'new'])->name('new');
 // store the newly created contact data into the database

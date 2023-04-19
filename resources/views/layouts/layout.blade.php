@@ -29,14 +29,42 @@
                 </a>
             </div>
             <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                <button type="button" class="btn btn-primary">Sign-up</button>
+                @guest
+                    @if (Route::has('login'))
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">{{ __('Login') }}</a>
+                    @endif
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="btn btn-primary">{{ __('Register') }}</a>
+                    @endif
+                @else
+                <div class="dropdown">
+                    <a id="navbarDropdown" class="fs-5 dropdown-toggle" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+                @endguest
+
+
             </div>
         </header>
 
         <!-- Main -->
         <div class="row">
             <!-- Sidebar -->
+            @auth
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary border-3 border-end col-md-3"
                 style="width: 280px;">
                 <ul class="nav nav-pills flex-column mb-auto">
@@ -72,6 +100,7 @@
                     </li>
                 </ul>
             </div>
+            @endauth
 
             <!-- Content -->
             <div class="container-fluid align-item-center justify-content-center col-md-9">
